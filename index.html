@@ -122,6 +122,14 @@ section.studies{padding:40px 0;}
   padding:5px 10px; border-radius:100px; white-space:nowrap;
 }
 .badge .dot{width:6px; height:6px; border-radius:50%; background:var(--stamp);}
+.badge.featured-badge{background:var(--verify-soft); color:var(--verify); border-color:var(--verify);}
+.badge.featured-badge .dot{background:var(--verify);}
+.study.featured{border-color:var(--verify); box-shadow:0 0 0 1px var(--verify);}
+.repo-link{
+  display:inline-block; margin-top:16px; font-family:'JetBrains Mono',monospace; font-size:12.5px; font-weight:600;
+  color:var(--verify); text-decoration:none; border-bottom:1px solid var(--verify);
+}
+.repo-link:hover{opacity:0.75;}
 
 .stages{margin-top:18px; display:grid; grid-template-columns:repeat(3,1fr); gap:14px;}
 .stage .stage-label{
@@ -134,24 +142,8 @@ section.studies{padding:40px 0;}
 }
 .stage p{margin:0; font-size:13.5px; color:var(--ink);}
 
-/* whats next */
+/* latest project */
 section.next{padding:40px 0; border-top:1px solid var(--line);}
-.next-card{
-  border:1px dashed var(--line); border-radius:14px; padding:22px;
-  background:linear-gradient(180deg, var(--paper-2), var(--paper));
-}
-.next-card .eyebrow{color:var(--stamp);}
-.next-card p{margin:10px 0 0; font-size:14.5px; color:var(--ink); max-width:64ch;}
-.next-card .status{
-  margin-top:14px; display:inline-flex; align-items:center; gap:7px;
-  font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--muted);
-}
-.next-card .status .pulse{
-  width:7px; height:7px; border-radius:50%; background:var(--stamp);
-  animation:pulse 1.8s ease-in-out infinite;
-}
-@media (prefers-reduced-motion: reduce){.next-card .status .pulse{animation:none;}}
-@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.35;}}
 
 /* footer */
 footer{padding:40px 0 60px; border-top:1px solid var(--line); margin-top:10px;}
@@ -177,7 +169,7 @@ footer .meta{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(-
     <div class="links">
       <a href="#track-record">Track record</a>
       <a href="#case-studies">Case studies</a>
-      <a href="#next">What's next</a>
+      <a href="#latest">Latest project</a>
       <a href="#contact">Contact</a>
     </div>
   </div>
@@ -319,13 +311,32 @@ footer .meta{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(-
     </article>
   </section>
 
-  <section class="next" id="next">
-    <div class="next-card">
-      <p class="eyebrow">In progress — not yet shipped</p>
-      <h3>Agentic quality orchestration</h3>
-      <p>Translating the quality-gate pipeline above into an agent that decides for itself: given a new PR or model candidate, an orchestration layer calls regression, log-validation, drift-detection, and alpha-test tools — behind their own MCP interfaces — reads each result, and decides what to run next, with a human-approval gate before anything merges. Currently designing this on top of the existing pipeline, likely running inside a Harness CI stage.</p>
-      <span class="status"><span class="pulse"></span>Design phase — details added here once built</span>
+  <section class="next" id="latest">
+    <div class="section-head">
+      <h2>Latest project</h2>
+      <p>A personal build, on my own time and infrastructure — the one piece here with a real, public, runnable repo behind it.</p>
     </div>
+    <article class="study featured">
+      <div class="study-head">
+        <h3>Agentic AI evaluation orchestrator</h3>
+        <span class="badge featured-badge"><span class="dot"></span>24/24 tests · live repo</span>
+      </div>
+      <div class="stages">
+        <div class="stage">
+          <p class="stage-label"><span class="n">1</span>Problem</p>
+          <p>Most "agentic AI" demos either check output against a fixed rubric with no real model-driven autonomy, or wrap a single LLM call and call it agentic with no real evaluation underneath. Neither earns the word.</p>
+        </div>
+        <div class="stage">
+          <p class="stage-label"><span class="n">2</span>Approach</p>
+          <p>Built four evaluation tools (golden-dataset comparison, groundedness checking, LLM-as-judge, drift detection), each its own MCP server, then an orchestrator that lets the model itself decide which tools to call and when to stop — with the final approve/escalate verdict computed by tested, deterministic policy code, not the model's own opinion. Wired into a CI/CD pipeline with a genuine human-approval gate.</p>
+        </div>
+        <div class="stage">
+          <p class="stage-label"><span class="n">3</span>Outcome</p>
+          <p>Verified live, not just written: the model correctly stopped after one decisive tool call on a hallucinated answer, and — the sharpest result — the governed policy correctly overrode the model's own wrong "I'd recommend approving" when two tool calls had actually failed. The human-approval gate was proven end-to-end with a real reviewer click on live GitHub Actions.</p>
+        </div>
+      </div>
+      <a class="repo-link" href="https://github.com/leelasaikrishna-p/ai-eval-orchestrator" target="_blank" rel="noopener">View the repo on GitHub →</a>
+    </article>
   </section>
 
   <footer id="contact">
