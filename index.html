@@ -319,7 +319,7 @@ footer .meta{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(-
     <article class="study featured">
       <div class="study-head">
         <h3>Agentic AI evaluation orchestrator</h3>
-        <span class="badge featured-badge"><span class="dot"></span>24/24 tests · live repo</span>
+        <span class="badge featured-badge"><span class="dot"></span>40/40 tests · 2 models</span>
       </div>
       <div class="stages">
         <div class="stage">
@@ -328,11 +328,11 @@ footer .meta{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(-
         </div>
         <div class="stage">
           <p class="stage-label"><span class="n">2</span>Approach</p>
-          <p>Built four evaluation tools (golden-dataset comparison, groundedness checking, LLM-as-judge, drift detection), each its own MCP server, then an orchestrator that lets the model itself decide which tools to call and when to stop — with the final approve/escalate verdict computed by tested, deterministic policy code, not the model's own opinion. Wired into a CI/CD pipeline with a genuine human-approval gate.</p>
+          <p>Built four evaluation tools (golden-dataset comparison, groundedness checking, LLM-as-judge, drift detection), each its own MCP server, then an orchestrator that lets the model itself decide which tools to call and when to stop — with the final approve/escalate verdict computed by tested, deterministic policy code, not the model's own opinion. Runs on Llama 3.1 (local, via Ollama) or Google Gemini behind one provider interface, with gate thresholds set per model from measured reliability. Wired into a CI/CD pipeline with a genuine human-approval gate.</p>
         </div>
         <div class="stage">
           <p class="stage-label"><span class="n">3</span>Outcome</p>
-          <p>Verified live, not just written: the model correctly stopped after one decisive tool call on a hallucinated answer, and — the sharpest result — the governed policy correctly overrode the model's own wrong "I'd recommend approving" when two tool calls had actually failed. The human-approval gate was proven end-to-end with a real reviewer click on live GitHub Actions.</p>
+          <p>Verified live, not just written: the model correctly stopped after one decisive tool call on a hallucinated answer, and — the sharpest result — the governed policy correctly overrode the model's own wrong "I'd recommend approving" when two tool calls had actually failed. The human-approval gate was proven end-to-end with a real reviewer click on live GitHub Actions. Measured on a second model, Gemini, the same policy got every verdict right even though its LLM judge rated a hallucination 9/10 — confirming why the final verdict stays in code.</p>
         </div>
       </div>
       <a class="repo-link" href="https://github.com/leelasaikrishna-p/ai-eval-orchestrator" target="_blank" rel="noopener">View the repo on GitHub →</a>
