@@ -234,15 +234,15 @@ footer .meta{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(-
       <div class="stages">
         <div class="stage">
           <p class="stage-label"><span class="n">1</span>Problem</p>
-          <p>Writing functional tests from a requirement or an API spec was slow and inconsistent across engineers, and didn't scale with delivery pace.</p>
+          <p>About 100 features shipped every week, with only one or two days to add tests, so only a handful could be covered. The constraint was scale, not speed.</p>
         </div>
         <div class="stage">
           <p class="stage-label"><span class="n">2</span>Approach</p>
-          <p>Built a GPT-4-based platform generating tests and eval cases from a requirement or spec, layered with a RAG pipeline indexing the existing test repository so output matches established conventions.</p>
+          <p>Built a GPT-4-based platform generating tests from a requirement or an OpenAPI spec, with a RAG layer over existing test repositories tagged by language and framework, so output matches each team's conventions. Every generated test is reviewed before merge.</p>
         </div>
         <div class="stage">
           <p class="stage-label"><span class="n">3</span>Outcome</p>
-          <p>Lifted test coverage 80%, cut manual testing effort 40%.</p>
+          <p>Went from testing a handful of the ~100 weekly features to generated tests for every feature, lifting coverage 80% and cutting manual testing effort 40%.</p>
         </div>
       </div>
     </article>
