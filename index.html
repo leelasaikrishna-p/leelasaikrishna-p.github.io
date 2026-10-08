@@ -319,7 +319,7 @@ footer .meta{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(-
     <article class="study featured">
       <div class="study-head">
         <h3>Agentic AI evaluation orchestrator</h3>
-        <span class="badge featured-badge"><span class="dot"></span>69/69 tests · 2 models</span>
+        <span class="badge featured-badge"><span class="dot"></span>75/75 tests · 60 labeled answers</span>
       </div>
       <div class="stages">
         <div class="stage">
@@ -332,7 +332,7 @@ footer .meta{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(-
         </div>
         <div class="stage">
           <p class="stage-label"><span class="n">3</span>Outcome</p>
-          <p>Verified live, not just written: the model correctly stopped after one decisive tool call on a hallucinated answer, and — the sharpest result — the governed policy correctly overrode the model's own wrong "I'd recommend approving" when two tool calls had actually failed. The human-approval gate was proven end-to-end with a real reviewer click on live GitHub Actions. Measured on a second model, Gemini, the same policy got every verdict right even though its LLM judge rated a hallucination 9/10 — confirming why the final verdict stays in code. Grading the judge against reference answers and gating on correctness then cut its missed errors on Gemini from 2 to 0, and a code-level prompt-injection check escalated every tested attack, including a live run where the agent itself was fooled into calling an attacked answer shippable.</p>
+          <p>Verified live, not just written: the model correctly stopped after one decisive tool call on a hallucinated answer, and — the sharpest result — the governed policy correctly overrode the model's own wrong "I'd recommend approving" when two tool calls had actually failed. The human-approval gate was proven end-to-end with a real reviewer click on live GitHub Actions. Measured on a second model, Gemini, the same policy got every verdict right even though its LLM judge rated a hallucination 9/10 — confirming why the final verdict stays in code. Measured against 60 blind human-labeled answers, the shipped policy catches 94-100% of bad answers; a looser rule that looked safe on three examples would have let 40% of them through. A code-level prompt-injection check escalated every tested attack, including a live run where the agent itself was fooled into calling an attacked answer shippable.</p>
         </div>
       </div>
       <a class="repo-link" href="https://github.com/leelasaikrishna-p/ai-eval-orchestrator" target="_blank" rel="noopener">View the repo on GitHub →</a>
