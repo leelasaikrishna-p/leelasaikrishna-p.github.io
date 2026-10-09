@@ -6,11 +6,13 @@
 <title>Leela Sai Krishna Pasupuleti</title>
 <meta name="description" content="AI/ML platform quality &amp; governance case studies — an engineering leadership portfolio.">
 <style>
+/* Layout: a single 760px reading column; each case study pairs a short problem/approach/outcome strip with one diagram of how the system works. */
 :root{
   --paper:#F7F4EC; --paper-2:#EFEADC; --paper-3:#E7E0CC;
   --ink:#201E19; --muted:#6E6858; --line:#DDD6C3;
   --verify:#1F6F5C; --verify-soft:#DCEAE3;
   --stamp:#B5502E; --stamp-soft:#F3E1D8;
+  --s1:#00806A; --s2:#C4502A;
   color-scheme:light;
 }
 @media (prefers-color-scheme: dark){
@@ -19,6 +21,7 @@
     --ink:#EDEAE0; --muted:#9C9686; --line:#33352F;
     --verify:#5FC7AC; --verify-soft:#1C3630;
     --stamp:#E08A5E; --stamp-soft:#3A2A22;
+    --s1:#34A88C; --s2:#D6764A;
     color-scheme:dark;
   }
 }
@@ -27,18 +30,19 @@
   --ink:#EDEAE0; --muted:#9C9686; --line:#33352F;
   --verify:#5FC7AC; --verify-soft:#1C3630;
   --stamp:#E08A5E; --stamp-soft:#3A2A22;
+  --s1:#34A88C; --s2:#D6764A;
   color-scheme:dark;
 }
 @import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 *{box-sizing:border-box;}
 html,body{margin:0; padding:0;}
+img{max-width:100%;}
 body{
-  background:var(--paper); color:var(--ink);
+  margin:0; background:var(--paper); color:var(--ink);
   font-family:'IBM Plex Sans',-apple-system,BlinkMacSystemFont,sans-serif;
   line-height:1.55; padding-inline:20px;
 }
-img{max-width:100%;}
 .wrap{max-width:760px; margin:0 auto;}
 a{color:inherit;}
 h1,h2,h3{font-family:'Newsreader',Georgia,serif; font-weight:600; text-wrap:balance; margin:0;}
@@ -62,10 +66,10 @@ nav.topbar .inner{
 nav.topbar .name{font-family:'JetBrains Mono',monospace; font-size:12.5px; font-weight:600; letter-spacing:.02em;}
 nav.topbar .links{display:flex; gap:16px; flex-wrap:wrap;}
 nav.topbar .links a{font-family:'JetBrains Mono',monospace; font-size:11.5px; text-decoration:none; color:var(--muted); letter-spacing:.02em;}
-nav.topbar .links a:hover{color:var(--verify);}
+nav.topbar .links a:hover, nav.topbar .links a:focus-visible{color:var(--verify);}
 
 /* hero */
-header.hero{padding:56px 0 40px; border-bottom:1px solid var(--line);}
+header.hero{padding:56px 0 34px; border-bottom:1px solid var(--line);}
 header.hero h1{font-size:clamp(28px,5vw,38px); letter-spacing:-.01em;}
 header.hero .role{
   margin-top:8px; font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--muted); letter-spacing:.02em;
@@ -84,9 +88,34 @@ button.copy-btn{
   padding:3px 8px; border-radius:5px; cursor:pointer;
 }
 button.copy-btn:hover{border-color:var(--verify); color:var(--verify);}
+button:focus-visible, a:focus-visible, summary:focus-visible{outline:2px solid var(--verify); outline-offset:2px;}
+
+/* figures and diagrams */
+figure{margin:18px 0 0;}
+.viz-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch;}
+.viz-scroll svg{display:block; width:100%; min-width:600px; height:auto;}
+figcaption{margin-top:8px; font-size:12.5px; color:var(--muted); max-width:64ch;}
+.d-line{stroke:var(--muted); stroke-width:1.4; fill:none;}
+.d-key{stroke:var(--verify); stroke-width:1.8; fill:none;}
+.d-box{fill:var(--paper); stroke:var(--line); stroke-width:1.2;}
+.d-box-key{fill:var(--verify-soft); stroke:var(--verify); stroke-width:1.4;}
+.d-box-stamp{fill:var(--stamp-soft); stroke:var(--stamp); stroke-width:1.4;}
+.d-text{fill:var(--ink); font-family:'IBM Plex Sans',sans-serif; font-size:12px;}
+.d-strong{fill:var(--ink); font-family:'IBM Plex Sans',sans-serif; font-size:12px; font-weight:600;}
+.d-small{fill:var(--muted); font-family:'JetBrains Mono',monospace; font-size:10.5px;}
+.d-lane{fill:var(--muted); font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.08em;}
+.d-dot{fill:var(--verify);}
+.d-dot-off{fill:none; stroke:var(--line); stroke-width:1.2;}
+.d-axis{stroke:var(--line); stroke-width:2;}
+.arrow-head{fill:var(--muted);}
+.arrow-head-key{fill:var(--verify);}
+
+/* timeline */
+.timeline{margin-top:30px;}
+.timeline .eyebrow{color:var(--muted);}
 
 /* stats */
-section.stats{padding:36px 0; border-bottom:1px solid var(--line);}
+section.stats{padding:32px 0; border-bottom:1px solid var(--line);}
 .stats-grid{display:grid; grid-template-columns:repeat(5,1fr); gap:10px;}
 .stat-tile{
   background:var(--paper-2); border:1px solid var(--line); border-radius:10px;
@@ -105,13 +134,12 @@ section.stats{padding:36px 0; border-bottom:1px solid var(--line);}
 
 /* case studies */
 section.studies{padding:40px 0;}
-.section-head{margin-bottom:26px;}
+.section-head{margin-bottom:22px;}
 .section-head h2{font-size:24px;}
 .section-head p{margin-top:8px; color:var(--muted); font-size:14px; max-width:60ch;}
-
 .study{
   border:1px solid var(--line); border-radius:14px; background:var(--paper-2);
-  padding:22px 22px 24px; margin-bottom:16px;
+  padding:22px 22px 24px; margin-bottom:16px; min-width:0;
 }
 .study .study-head{display:flex; justify-content:space-between; align-items:flex-start; gap:14px; flex-wrap:wrap;}
 .study h3{font-size:19px; max-width:44ch;}
@@ -126,21 +154,52 @@ section.studies{padding:40px 0;}
 .badge.featured-badge .dot{background:var(--verify);}
 .study.featured{border-color:var(--verify); box-shadow:0 0 0 1px var(--verify);}
 .repo-link{
-  display:inline-block; margin-top:16px; font-family:'JetBrains Mono',monospace; font-size:12.5px; font-weight:600;
+  display:inline-block; margin-top:18px; font-family:'JetBrains Mono',monospace; font-size:12.5px; font-weight:600;
   color:var(--verify); text-decoration:none; border-bottom:1px solid var(--verify);
 }
 .repo-link:hover{opacity:0.75;}
 
-.stages{margin-top:18px; display:grid; grid-template-columns:repeat(3,1fr); gap:14px;}
+.stages{margin-top:16px; display:grid; grid-template-columns:repeat(3,1fr); gap:14px;}
+.stage{min-width:0;}
 .stage .stage-label{
   font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:.08em; text-transform:uppercase;
-  color:var(--verify); margin-bottom:6px; display:flex; align-items:center; gap:6px;
+  color:var(--verify); margin:0 0 6px; display:flex; align-items:center; gap:6px;
 }
 .stage .stage-label .n{
   width:16px; height:16px; border-radius:50%; border:1px solid var(--verify); color:var(--verify);
   display:flex; align-items:center; justify-content:center; font-size:9px; flex:none;
 }
 .stage p{margin:0; font-size:13.5px; color:var(--ink);}
+
+/* chart */
+.chart-legend{display:flex; gap:16px; flex-wrap:wrap; margin-top:14px; font-size:12.5px; color:var(--ink);}
+.chart-legend span{display:flex; align-items:center; gap:6px;}
+.chart-legend i{width:12px; height:12px; border-radius:3px; display:inline-block;}
+.bar-s1{fill:var(--s1);} .bar-s2{fill:var(--s2);}
+.c-grid{stroke:var(--line); stroke-width:1;}
+.c-label{fill:var(--ink); font-family:'IBM Plex Sans',sans-serif; font-size:12px;}
+.c-group{fill:var(--ink); font-family:'IBM Plex Sans',sans-serif; font-size:12.5px; font-weight:600;}
+.c-value{fill:var(--ink); font-family:'JetBrains Mono',monospace; font-size:11px; font-variant-numeric:tabular-nums;}
+.c-tick{fill:var(--muted); font-family:'JetBrains Mono',monospace; font-size:10.5px;}
+.c-hit{fill:transparent; cursor:default;}
+.c-hit:hover + .c-hl, .c-hit:focus + .c-hl{opacity:1;}
+.c-hl{opacity:0; fill:var(--ink); fill-opacity:.06; pointer-events:none;}
+.tooltip{
+  position:fixed; z-index:20; pointer-events:none; background:var(--paper); color:var(--ink);
+  border:1px solid var(--line); border-radius:8px; padding:7px 10px; font-size:12px; line-height:1.4;
+  box-shadow:0 4px 14px rgba(0,0,0,.12); max-width:240px;
+}
+details.data-table{margin-top:12px; font-size:12.5px;}
+details.data-table summary{cursor:pointer; color:var(--verify); font-family:'JetBrains Mono',monospace; font-size:11.5px;}
+.table-scroll{overflow-x:auto;}
+details.data-table table{border-collapse:collapse; margin-top:8px; font-variant-numeric:tabular-nums; min-width:420px;}
+details.data-table th, details.data-table td{border-bottom:1px solid var(--line); padding:5px 10px; text-align:left;}
+details.data-table th{color:var(--muted); font-weight:500;}
+.callout{
+  margin-top:16px; padding:12px 14px; border-radius:10px; background:var(--paper);
+  border:1px dashed var(--line); font-size:13.5px;
+}
+.callout b{color:var(--verify);}
 
 /* latest project */
 section.next{padding:40px 0; border-top:1px solid var(--line);}
@@ -159,6 +218,7 @@ footer .meta{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(-
   footer .foot-row{flex-direction:column; align-items:flex-start;}
   footer .meta{text-align:left;}
 }
+@media (prefers-reduced-motion: reduce){ *{transition:none !important;} }
 </style>
 </head>
 <body>
@@ -184,12 +244,56 @@ footer .meta{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(-
     <p class="statement">I build the systems that decide whether an AI model, feature, or piece of generated code is trustworthy enough to ship — and the gates that keep watching after it does.</p>
     <div class="contact-row">
       <span class="contact-item">📍 California, USA</span>
-      <span class="contact-item">✉️ <span id="email-text">leelasaikrishna@gmail.com</span> <button class="copy-btn" id="copy-email">Copy</button></span>
+      <span class="contact-item">✉️ <span id="email-text">leelasaikrishna@gmail.com</span> <button class="copy-btn" id="copy-email" type="button">Copy</button></span>
       <span class="contact-item">🔗 <a href="https://linkedin.com/in/leelasaikrishna" target="_blank" rel="noopener">linkedin.com/in/leelasaikrishna</a></span>
     </div>
+
+    <figure class="timeline">
+      <p class="eyebrow">Career</p>
+      <div class="viz-scroll">
+        <svg viewBox="0 0 720 142" role="img" aria-label="Career timeline: Infosys from 2005, Technology Lead on the Apple engagement from 2009, PayPal from 2016 as QA engineer, Member of Technical Staff in 2018, engineering manager in 2019, Senior Manager in 2022, and an open-source evaluation orchestrator in 2026.">
+          <line class="d-axis" x1="30" y1="66" x2="690" y2="66"/>
+          <line x1="375.7" y1="66" x2="690" y2="66" stroke="var(--verify)" stroke-width="3"/>
+          <text class="d-lane" x="30" y="86">INFOSYS · 2005–2016</text>
+          <text class="d-lane" x="380" y="86">PAYPAL · 2016–NOW</text>
+
+          <circle cx="30" cy="66" r="5" class="d-dot"/>
+          <text class="d-small" x="30" y="22">2005</text>
+          <text class="d-text" x="30" y="40">Software engineer</text>
+          <text class="d-small" x="30" y="54">Cisco · Telstra</text>
+
+          <circle cx="155.7" cy="66" r="5" class="d-dot"/>
+          <line class="d-line" x1="155.7" y1="72" x2="155.7" y2="102"/>
+          <text class="d-text" x="155.7" y="118" text-anchor="middle">2009 · Technology lead</text>
+          <text class="d-small" x="155.7" y="132" text-anchor="middle">Apple engagement</text>
+
+          <circle cx="375.7" cy="66" r="5" class="d-dot"/>
+          <text class="d-small" x="375.7" y="22" text-anchor="end">2016</text>
+          <text class="d-text" x="375.7" y="40" text-anchor="end">QA engineer</text>
+
+          <circle cx="438.6" cy="66" r="5" class="d-dot"/>
+          <text class="d-small" x="438.6" y="118" text-anchor="middle">2018 · MTS</text>
+          <line class="d-line" x1="438.6" y1="72" x2="438.6" y2="76"/>
+          <line class="d-line" x1="438.6" y1="92" x2="438.6" y2="106"/>
+
+          <circle cx="470" cy="66" r="5" class="d-dot"/>
+          <text class="d-small" x="474" y="22">2019</text>
+          <text class="d-text" x="474" y="40">Eng manager</text>
+
+          <circle cx="564.3" cy="66" r="5" class="d-dot"/>
+          <text class="d-small" x="564.3" y="118" text-anchor="middle">2022 · Sr manager</text>
+          <line class="d-line" x1="564.3" y1="72" x2="564.3" y2="106"/>
+
+          <circle cx="690" cy="66" r="6" fill="var(--stamp)"/>
+          <text class="d-small" x="690" y="22" text-anchor="end">2026</text>
+          <text class="d-text" x="690" y="40" text-anchor="end">Open-source</text>
+          <text class="d-small" x="690" y="54" text-anchor="end">eval orchestrator</text>
+        </svg>
+      </div>
+    </figure>
   </header>
 
-  <section class="stats" id="track-record">
+  <section class="stats" id="track-record" aria-label="Track record">
     <div class="stats-grid">
       <div class="stat-tile"><div class="seal">✓</div><div class="num">10</div><div class="label">engineers built<br>from zero (7 reports)</div></div>
       <div class="stat-tile"><div class="seal">✓</div><div class="num">$1M+</div><div class="label">annual savings from<br>model/asset retirement</div></div>
@@ -202,7 +306,7 @@ footer .meta{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(-
   <section class="studies" id="case-studies">
     <div class="section-head">
       <h2>Case studies</h2>
-      <p>Five systems I designed and own at PayPal — described here at the architecture level, without proprietary code or internal specifics.</p>
+      <p>Systems I designed and own at PayPal — described at the architecture level, without proprietary code or internal specifics.</p>
     </div>
 
     <article class="study">
@@ -213,17 +317,63 @@ footer .meta{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(-
       <div class="stages">
         <div class="stage">
           <p class="stage-label"><span class="n">1</span>Problem</p>
-          <p>Manual PR review was a bottleneck — every pull request needed a senior engineer's time, competing with everything else on their plate.</p>
+          <p>Manual PR review was a bottleneck, and a generic LLM reviewer wasn't useful across very different repos: on SQL repos it raised false critical alarms.</p>
         </div>
         <div class="stage">
           <p class="stage-label"><span class="n">2</span>Approach</p>
-          <p>Designed and architected an AI-powered Pull Request Analyzer using LLMs to review code, generate contextual comments, flag defects, and recommend improvements before merge.</p>
+          <p>Each repo gets a skill an LLM writes from its commit history. Every PR's diff is reviewed with that skill, and structured findings land as PR comments.</p>
         </div>
         <div class="stage">
           <p class="stage-label"><span class="n">3</span>Outcome</p>
-          <p>Cut review effort from hours to minutes. Paired with executive dashboards giving leadership visibility into review quality and adoption org-wide.</p>
+          <p>Review effort went from hours to minutes, the false critical alarms disappeared, and leadership dashboards track review quality and adoption.</p>
         </div>
       </div>
+      <figure>
+        <div class="viz-scroll">
+          <svg viewBox="0 0 720 232" role="img" aria-label="PR Analyzer flow: at onboarding an LLM reads a repo's commit history and writes a skill, stored in a central skills repo. On every PR, a webhook sends the diff and the repo's skill to the LLM, which returns structured findings posted as PR comments and stored for dashboards. An engineer still approves the merge.">
+            <defs>
+              <marker id="pr-a" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L8,4 L0,8 z" class="arrow-head"/></marker>
+              <marker id="pr-k" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L8,4 L0,8 z" class="arrow-head-key"/></marker>
+            </defs>
+            <text class="d-lane" x="10" y="14">ONCE PER REPO</text>
+            <rect class="d-box" x="10" y="22" width="124" height="46" rx="7"/>
+            <text class="d-text" x="72" y="42" text-anchor="middle">Commit history</text>
+            <text class="d-small" x="72" y="57" text-anchor="middle">how changes are made</text>
+            <line class="d-line" x1="134" y1="45" x2="176" y2="45" marker-end="url(#pr-a)"/>
+            <rect class="d-box-key" x="178" y="22" width="150" height="46" rx="7"/>
+            <text class="d-strong" x="253" y="42" text-anchor="middle">Repo skill</text>
+            <text class="d-small" x="253" y="57" text-anchor="middle">written by an LLM</text>
+            <line class="d-line" x1="328" y1="45" x2="370" y2="45" marker-end="url(#pr-a)"/>
+            <rect class="d-box" x="372" y="22" width="150" height="46" rx="7"/>
+            <text class="d-text" x="447" y="42" text-anchor="middle">Central skills repo</text>
+            <text class="d-small" x="447" y="57" text-anchor="middle">versioned, rollback</text>
+
+            <text class="d-lane" x="10" y="108">EVERY PULL REQUEST</text>
+            <rect class="d-box" x="10" y="116" width="124" height="46" rx="7"/>
+            <text class="d-text" x="72" y="136" text-anchor="middle">PR opened</text>
+            <text class="d-small" x="72" y="151" text-anchor="middle">GitHub webhook</text>
+            <line class="d-line" x1="134" y1="139" x2="176" y2="139" marker-end="url(#pr-a)"/>
+            <rect class="d-box" x="178" y="116" width="150" height="46" rx="7"/>
+            <text class="d-text" x="253" y="136" text-anchor="middle">Diff + skill</text>
+            <text class="d-small" x="253" y="151" text-anchor="middle">+ general review rules</text>
+            <path class="d-line" d="M447,68 L447,92 L253,92 L253,114" marker-end="url(#pr-a)"/>
+            <text class="d-small" x="350" y="87" text-anchor="middle">loaded per PR</text>
+            <line class="d-line" x1="328" y1="139" x2="370" y2="139" marker-end="url(#pr-a)"/>
+            <rect class="d-box-key" x="372" y="116" width="150" height="46" rx="7"/>
+            <text class="d-strong" x="447" y="136" text-anchor="middle">LLM review</text>
+            <text class="d-small" x="447" y="151" text-anchor="middle">file · line · severity</text>
+            <line class="d-key" x1="522" y1="139" x2="564" y2="139" marker-end="url(#pr-k)"/>
+            <rect class="d-box" x="566" y="116" width="144" height="46" rx="7"/>
+            <text class="d-text" x="638" y="136" text-anchor="middle">PR comments</text>
+            <text class="d-small" x="638" y="151" text-anchor="middle">old review minimized</text>
+            <path class="d-line" d="M447,162 L447,200 L564,200" marker-end="url(#pr-a)"/>
+            <rect class="d-box" x="566" y="180" width="144" height="40" rx="7"/>
+            <text class="d-text" x="638" y="204" text-anchor="middle">Dashboards</text>
+            <text class="d-small" x="200" y="210">a human still approves every merge</text>
+          </svg>
+        </div>
+        <figcaption>The skill is written once per repo; reviews only read it. That keeps the reviewer from learning from the code it reviews, and lets every skill be versioned and rolled back.</figcaption>
+      </figure>
     </article>
 
     <article class="study">
@@ -238,13 +388,62 @@ footer .meta{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(-
         </div>
         <div class="stage">
           <p class="stage-label"><span class="n">2</span>Approach</p>
-          <p>Built a GPT-4-based platform generating tests from a requirement or an OpenAPI spec, with a RAG layer over existing test repositories tagged by language and framework, so output matches each team's conventions. Every generated test is reviewed before merge.</p>
+          <p>GPT-4 generates tests from a requirement or an OpenAPI spec, grounded by examples retrieved from each team's own tests, tagged by language and framework.</p>
         </div>
         <div class="stage">
           <p class="stage-label"><span class="n">3</span>Outcome</p>
-          <p>Went from testing a handful of the ~100 weekly features to generated tests for every feature, lifting coverage 80% and cutting manual testing effort 40%.</p>
+          <p>Generated tests for every weekly feature instead of a handful, lifting coverage 80% and cutting manual testing effort 40%.</p>
         </div>
       </div>
+      <figure>
+        <div class="viz-scroll">
+          <svg viewBox="0 0 720 190" role="img" aria-label="Test generation flow: an engineer gives a requirement or an OpenAPI spec through a web UI or an MCP server in Claude Code; examples are retrieved from test repositories indexed by test method and tagged by language and framework; GPT-4 generates tests; they compile automatically; an engineer reviews and merges them through a normal pull request.">
+            <defs>
+              <marker id="tg-a" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L8,4 L0,8 z" class="arrow-head"/></marker>
+            </defs>
+            <rect class="d-box" x="10" y="30" width="124" height="54" rx="7"/>
+            <text class="d-text" x="72" y="52" text-anchor="middle">Requirement</text>
+            <text class="d-text" x="72" y="68" text-anchor="middle">or OpenAPI spec</text>
+            <text class="d-small" x="72" y="20" text-anchor="middle">web UI · MCP server</text>
+            <line class="d-line" x1="134" y1="57" x2="160" y2="57" marker-end="url(#tg-a)"/>
+            <rect class="d-box-key" x="162" y="30" width="132" height="54" rx="7"/>
+            <text class="d-strong" x="228" y="52" text-anchor="middle">Retrieve examples</text>
+            <text class="d-small" x="228" y="68" text-anchor="middle">same language + framework</text>
+            <line class="d-line" x1="294" y1="57" x2="320" y2="57" marker-end="url(#tg-a)"/>
+            <rect class="d-box" x="322" y="30" width="110" height="54" rx="7"/>
+            <text class="d-text" x="377" y="52" text-anchor="middle">GPT-4</text>
+            <text class="d-small" x="377" y="68" text-anchor="middle">writes tests</text>
+            <line class="d-line" x1="432" y1="57" x2="458" y2="57" marker-end="url(#tg-a)"/>
+            <rect class="d-box" x="460" y="30" width="110" height="54" rx="7"/>
+            <text class="d-text" x="515" y="52" text-anchor="middle">Auto compile</text>
+            <text class="d-small" x="515" y="68" text-anchor="middle">every test</text>
+            <line class="d-line" x1="570" y1="57" x2="596" y2="57" marker-end="url(#tg-a)"/>
+            <rect class="d-box-stamp" x="598" y="30" width="112" height="54" rx="7"/>
+            <text class="d-strong" x="654" y="52" text-anchor="middle">Human review</text>
+            <text class="d-small" x="654" y="68" text-anchor="middle">normal PR</text>
+
+            <rect class="d-box" x="162" y="122" width="306" height="46" rx="7"/>
+            <text class="d-text" x="315" y="142" text-anchor="middle">Team test repos, indexed by test method</text>
+            <text class="d-small" x="315" y="157" text-anchor="middle">tagged by language + framework · weekly re-index</text>
+            <line class="d-line" x1="228" y1="120" x2="228" y2="88" marker-end="url(#tg-a)"/>
+            <text class="d-small" x="236" y="108">examples</text>
+            <path class="d-line" d="M654,84 L654,145 L472,145" marker-end="url(#tg-a)"/>
+            <text class="d-small" x="562" y="138" text-anchor="middle">merged tests become examples</text>
+          </svg>
+        </div>
+        <figcaption>The first version, without retrieval, wasn't adopted: tests ignored team conventions. Retrieving each team's own tests is what made the output usable.</figcaption>
+      </figure>
+      <figure>
+        <div class="viz-scroll">
+          <svg viewBox="0 0 720 118" role="img" aria-label="About 100 features ship each week. Before: only a handful were covered by tests. After: generated tests for every feature.">
+            <text class="d-lane" x="10" y="14">BEFORE · A HANDFUL OF ~100 WEEKLY FEATURES TESTED</text>
+            <text class="d-lane" x="380" y="14">AFTER · TESTS GENERATED FOR EVERY FEATURE</text>
+            <g id="before-grid"></g>
+            <g id="after-grid"></g>
+          </svg>
+        </div>
+        <figcaption>Each dot is one feature in a typical week. "A handful" is drawn as five, for illustration.</figcaption>
+      </figure>
     </article>
 
     <article class="study">
@@ -259,13 +458,42 @@ footer .meta{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(-
         </div>
         <div class="stage">
           <p class="stage-label"><span class="n">2</span>Approach</p>
-          <p>Built two complementary gates: a pre-release tool comparing candidate builds against production metrics, and alpha testing — owned outright by my team — auditing every new model/feature for data-quality issues right after release.</p>
+          <p>A pre-release tool computes production's own metrics on the candidate build; after release, my team audits every new model and feature for bad data.</p>
         </div>
         <div class="stage">
           <p class="stage-label"><span class="n">3</span>Outcome</p>
-          <p>Regressions caught pre-release; production data validated for integrity before it's ever used in a real business decision.</p>
+          <p>Regressions caught before launch; production data validated before it's ever used in a real business decision.</p>
         </div>
       </div>
+      <figure>
+        <div class="viz-scroll">
+          <svg viewBox="0 0 720 150" role="img" aria-label="Two gates around a release. Before release, a candidate build is scored with the same metrics and ETL as production to surface metric shifts. After release, every new model and feature is audited for missing, degenerate or non-unique values before it is trusted in adjudication or business rules.">
+            <defs>
+              <marker id="gt-a" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L8,4 L0,8 z" class="arrow-head"/></marker>
+            </defs>
+            <line class="d-axis" x1="10" y1="75" x2="700" y2="75" marker-end="url(#gt-a)"/>
+            <rect class="d-box" x="10" y="52" width="110" height="46" rx="7"/>
+            <text class="d-text" x="65" y="72" text-anchor="middle">Candidate</text>
+            <text class="d-text" x="65" y="88" text-anchor="middle">build</text>
+            <rect class="d-box-key" x="146" y="44" width="186" height="62" rx="7"/>
+            <text class="d-strong" x="239" y="66" text-anchor="middle">Pre-release gate</text>
+            <text class="d-small" x="239" y="82" text-anchor="middle">production's metrics + ETL</text>
+            <text class="d-small" x="239" y="96" text-anchor="middle">run on the candidate</text>
+            <line x1="360" y1="30" x2="360" y2="120" stroke="var(--stamp)" stroke-width="2" stroke-dasharray="4 4"/>
+            <text class="d-small" x="360" y="22" text-anchor="middle">RELEASE</text>
+            <rect class="d-box-key" x="388" y="44" width="186" height="62" rx="7"/>
+            <text class="d-strong" x="481" y="66" text-anchor="middle">Post-release audit</text>
+            <text class="d-small" x="481" y="82" text-anchor="middle">missing · degenerate</text>
+            <text class="d-small" x="481" y="96" text-anchor="middle">non-unique values</text>
+            <rect class="d-box" x="598" y="52" width="92" height="46" rx="7"/>
+            <text class="d-text" x="644" y="72" text-anchor="middle">Trusted in</text>
+            <text class="d-text" x="644" y="88" text-anchor="middle">decisions</text>
+            <text class="d-small" x="239" y="134" text-anchor="middle">catches metric shifts</text>
+            <text class="d-small" x="481" y="134" text-anchor="middle">catches bad data</text>
+          </svg>
+        </div>
+        <figcaption>The pre-release tool is in progress: it reuses production monitoring's metric infrastructure rather than building a second one.</figcaption>
+      </figure>
     </article>
 
     <article class="study">
@@ -280,11 +508,11 @@ footer .meta{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(-
         </div>
         <div class="stage">
           <p class="stage-label"><span class="n">2</span>Approach</p>
-          <p>Led the retirement and optimization of legacy models, features, and datasets, instituting governance discipline over lifecycle decisions instead of letting them run by default.</p>
+          <p>Led the retirement and optimization of legacy models, features, and datasets, instituting governance over lifecycle decisions instead of letting them run by default.</p>
         </div>
         <div class="stage">
           <p class="stage-label"><span class="n">3</span>Outcome</p>
-          <p>Delivered more than $1M in annual infrastructure and operational cost savings.</p>
+          <p>More than $1M in annual infrastructure and operational cost savings.</p>
         </div>
       </div>
     </article>
@@ -305,7 +533,7 @@ footer .meta{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(-
         </div>
         <div class="stage">
           <p class="stage-label"><span class="n">3</span>Outcome</p>
-          <p>10 engineers, 4 promotions to senior/staff/manager, zero regretted attrition over 8 years — including growing one engineer into a manager role and continuing to manage her team for over a year.</p>
+          <p>10 engineers, 4 promotions to senior/staff/manager, zero regretted attrition over 8 years — including growing one engineer into a manager role and managing her team for over a year.</p>
         </div>
       </div>
     </article>
@@ -324,17 +552,93 @@ footer .meta{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(-
       <div class="stages">
         <div class="stage">
           <p class="stage-label"><span class="n">1</span>Problem</p>
-          <p>Most "agentic AI" demos either check output against a fixed rubric with no real model-driven autonomy, or wrap a single LLM call and call it agentic with no real evaluation underneath. Neither earns the word.</p>
+          <p>Most "agentic AI" demos either check output against a fixed rubric with no real autonomy, or wrap one LLM call and call it agentic. Neither earns the word.</p>
         </div>
         <div class="stage">
           <p class="stage-label"><span class="n">2</span>Approach</p>
-          <p>Built four evaluation tools (golden-dataset comparison, groundedness checking, LLM-as-judge, drift detection), each its own MCP server, then an orchestrator that lets the model itself decide which tools to call and when to stop — with the final approve/escalate verdict computed by tested, deterministic policy code, not the model's own opinion. Runs on Llama 3.1 (local, via Ollama) or Google Gemini behind one provider interface, with gate thresholds set per model from measured reliability. Wired into a CI/CD pipeline with a genuine human-approval gate.</p>
+          <p>The model chooses which evaluation tools to call, each its own MCP server; tested, deterministic policy code makes the verdict, with a real human-approval gate.</p>
         </div>
         <div class="stage">
           <p class="stage-label"><span class="n">3</span>Outcome</p>
-          <p>Verified live, not just written: the model correctly stopped after one decisive tool call on a hallucinated answer, and — the sharpest result — the governed policy correctly overrode the model's own wrong "I'd recommend approving" when two tool calls had actually failed. The human-approval gate was proven end-to-end with a real reviewer click on live GitHub Actions. Measured on a second model, Gemini, the same policy got every verdict right even though its LLM judge rated a hallucination 9/10 — confirming why the final verdict stays in code. Measured against 60 blind human-labeled answers, the shipped policy catches 94-100% of bad answers; a looser rule that looked safe on three examples would have let 40% of them through. A code-level prompt-injection check escalated every tested attack, including a live run where the agent itself was fooled into calling an attacked answer shippable.</p>
+          <p>Measured against 60 blind human-labeled answers on Llama 3.1 and Gemini, and hardened against prompt injection in the answers it evaluates.</p>
         </div>
       </div>
+
+      <figure>
+        <div class="viz-scroll">
+          <svg viewBox="0 0 720 210" role="img" aria-label="Orchestrator architecture: the answer being evaluated is untrusted. A rule-based injection check runs in code on every answer. An agent loop lets the LLM choose evaluation tools exposed as MCP servers: golden-set comparison, groundedness and an LLM judge. Their results go to a deterministic policy that approves or escalates; escalations wait for a human approval in GitHub Actions.">
+            <defs>
+              <marker id="or-a" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L8,4 L0,8 z" class="arrow-head"/></marker>
+              <marker id="or-k" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L8,4 L0,8 z" class="arrow-head-key"/></marker>
+            </defs>
+            <rect class="d-box-stamp" x="10" y="78" width="118" height="54" rx="7"/>
+            <text class="d-strong" x="69" y="100" text-anchor="middle">Answer to</text>
+            <text class="d-strong" x="69" y="116" text-anchor="middle">evaluate</text>
+            <text class="d-small" x="69" y="72" text-anchor="middle">untrusted input</text>
+
+            <path class="d-line" d="M128,95 L150,95 L150,40 L172,40" marker-end="url(#or-a)"/>
+            <rect class="d-box" x="174" y="16" width="160" height="48" rx="7"/>
+            <text class="d-text" x="254" y="36" text-anchor="middle">Injection check</text>
+            <text class="d-small" x="254" y="52" text-anchor="middle">rule-based, in code</text>
+
+            <path class="d-line" d="M128,115 L150,115 L150,140 L172,140" marker-end="url(#or-a)"/>
+            <rect class="d-box-key" x="174" y="112" width="160" height="56" rx="7"/>
+            <text class="d-strong" x="254" y="134" text-anchor="middle">Agent loop</text>
+            <text class="d-small" x="254" y="150" text-anchor="middle">LLM picks tools, stops</text>
+
+            <rect class="d-box" x="174" y="182" width="160" height="22" rx="5"/>
+            <text class="d-small" x="254" y="197" text-anchor="middle">golden · grounded · judge (MCP)</text>
+            <line class="d-line" x1="254" y1="168" x2="254" y2="180" marker-end="url(#or-a)"/>
+
+            <line class="d-line" x1="334" y1="40" x2="400" y2="86" marker-end="url(#or-a)"/>
+            <text class="d-small" x="372" y="52">flag escalates first</text>
+            <line class="d-line" x1="334" y1="140" x2="400" y2="112" marker-end="url(#or-a)"/>
+            <text class="d-small" x="350" y="146">evidence</text>
+
+            <rect class="d-box-key" x="402" y="74" width="140" height="54" rx="7"/>
+            <text class="d-strong" x="472" y="96" text-anchor="middle">Deterministic</text>
+            <text class="d-strong" x="472" y="112" text-anchor="middle">policy</text>
+
+            <line class="d-key" x1="542" y1="88" x2="590" y2="60" marker-end="url(#or-k)"/>
+            <rect class="d-box" x="592" y="36" width="118" height="40" rx="7"/>
+            <text class="d-text" x="651" y="61" text-anchor="middle">Approve</text>
+            <line class="d-line" x1="542" y1="114" x2="590" y2="140" marker-end="url(#or-a)"/>
+            <rect class="d-box-stamp" x="592" y="120" width="118" height="54" rx="7"/>
+            <text class="d-text" x="651" y="142" text-anchor="middle">Escalate</text>
+            <text class="d-small" x="651" y="158" text-anchor="middle">human approval</text>
+          </svg>
+        </div>
+        <figcaption>The model decides how to investigate; tested code decides the verdict. In one live run the agent called an attacked answer "trustworthy enough to ship" — the injection check had already flagged it, so the policy escalated anyway.</figcaption>
+      </figure>
+
+      <figure>
+        <p class="eyebrow" style="margin-top:10px;">Measured against 60 blind human-labeled answers</p>
+        <div class="chart-legend" aria-hidden="true">
+          <span><i style="background:var(--s1)"></i>Llama 3.1 (local)</span>
+          <span><i style="background:var(--s2)"></i>Gemini</span>
+        </div>
+        <div class="viz-scroll">
+          <svg id="eval-chart" viewBox="0 0 720 270" role="img" aria-label="Bar chart. With the shipped OR rule, the policy catches 94% of bad answers on Llama 3.1 and 100% on Gemini, and flags 28% and 20% of good answers. A stricter AND rule would flag only 4% and 0% of good answers but catch only 63% and 60% of bad answers."></svg>
+        </div>
+        <figcaption>On three examples, the AND rule (escalate only when two checks agree) looked safe. On 60 labeled answers it would let about 40% of bad answers through, so the cautious OR rule stays, and its cost is now measured.</figcaption>
+        <details class="data-table">
+          <summary>Show the numbers as a table</summary>
+          <div class="table-scroll">
+            <table>
+              <thead><tr><th>Policy</th><th>Measure</th><th>Llama 3.1</th><th>Gemini</th></tr></thead>
+              <tbody>
+                <tr><td>OR (shipped)</td><td>Bad answers caught</td><td>94%</td><td>100%</td></tr>
+                <tr><td>OR (shipped)</td><td>Good answers flagged</td><td>28%</td><td>20%</td></tr>
+                <tr><td>AND</td><td>Bad answers caught</td><td>63%</td><td>60%</td></tr>
+                <tr><td>AND</td><td>Good answers flagged</td><td>4%</td><td>0%</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </details>
+      </figure>
+
+      <div class="callout"><b>Prompt injection:</b> marking the answer as data in the prompt fully protected Gemini but made Llama worse. The defense that held on both models is outside the model: code supplies the tools' inputs, and a rule-based check escalates first.</div>
+
       <a class="repo-link" href="https://github.com/leelasaikrishna-p/ai-eval-orchestrator" target="_blank" rel="noopener">View the repo on GitHub →</a>
     </article>
   </section>
@@ -355,8 +659,19 @@ footer .meta{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(-
 
 </div>
 
+<div class="tooltip" id="tooltip" hidden></div>
+
 <script>
 (function(){
+  var SVGNS = 'http://www.w3.org/2000/svg';
+  function el(tag, attrs, text){
+    var e = document.createElementNS(SVGNS, tag);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    if (text != null) e.textContent = text;
+    return e;
+  }
+
+  // Copy email
   var btn = document.getElementById('copy-email');
   var email = document.getElementById('email-text').textContent;
   btn.addEventListener('click', async function(){
@@ -368,10 +683,75 @@ footer .meta{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(-
     } catch(e) {
       var range = document.createRange();
       range.selectNode(document.getElementById('email-text'));
-      var sel = window.getSelection();
-      sel.removeAllRanges();
-      sel.addRange(range);
+      var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(range);
     }
+  });
+
+  // Before / after dot grids: 100 features, 10 x 10.
+  function grid(id, x0, filled){
+    var g = document.getElementById(id);
+    for (var i = 0; i < 100; i++){
+      var cx = x0 + (i % 20) * 16 + 6, cy = 32 + Math.floor(i / 20) * 16 + 6;
+      g.appendChild(el('circle', {cx: cx, cy: cy, r: 5, 'class': i < filled ? 'd-dot' : 'd-dot-off'}));
+    }
+  }
+  grid('before-grid', 10, 5);
+  grid('after-grid', 380, 100);
+
+  // Grouped horizontal bar chart with hover tooltips.
+  var rows = [
+    {group: 'OR rule (shipped)', label: 'Bad answers caught', v: [94, 100]},
+    {group: null, label: 'Good answers flagged', v: [28, 20]},
+    {group: 'AND rule', label: 'Bad answers caught', v: [63, 60]},
+    {group: null, label: 'Good answers flagged', v: [4, 0]}
+  ];
+  var series = [{name: 'Llama 3.1', cls: 'bar-s1'}, {name: 'Gemini', cls: 'bar-s2'}];
+  // Each row's rule name, for tooltips.
+  var current = null;
+  rows.forEach(function(row){ if (row.group) current = row.group; row.rule = current + ' · '; });
+  var svg = document.getElementById('eval-chart');
+  var X0 = 190, W = 470, BAR = 14, GAP = 2, y = 24;
+  [0, 25, 50, 75, 100].forEach(function(t){
+    var x = X0 + W * t / 100;
+    svg.appendChild(el('line', {x1: x, y1: 14, x2: x, y2: 252, 'class': 'c-grid'}));
+    svg.appendChild(el('text', {x: x, y: 266, 'text-anchor': 'middle', 'class': 'c-tick'}, t + '%'));
+  });
+  var tip = document.getElementById('tooltip');
+  function showTip(evt, html){
+    tip.innerHTML = html; tip.hidden = false;
+    var px = evt.clientX + 14, py = evt.clientY + 14;
+    var r = tip.getBoundingClientRect();
+    if (px + r.width > window.innerWidth - 8) px = evt.clientX - r.width - 14;
+    if (py + r.height > window.innerHeight - 8) py = evt.clientY - r.height - 14;
+    tip.style.left = px + 'px'; tip.style.top = py + 'px';
+  }
+  function hideTip(){ tip.hidden = true; }
+  rows.forEach(function(row){
+    if (row.group){
+      svg.appendChild(el('text', {x: 10, y: y + 2, 'class': 'c-group'}, row.group));
+      y += 14;
+    }
+    svg.appendChild(el('text', {x: 10, y: y + BAR + 4, 'class': 'c-label'}, row.label));
+    row.v.forEach(function(v, i){
+      var by = y + i * (BAR + GAP), w = Math.max(0, W * v / 100);
+      if (w > 0){
+        // flat start at the baseline, 4px rounded data end
+        var r = Math.min(4, w);
+        var d = 'M' + X0 + ',' + by + ' H' + (X0 + w - r) + ' Q' + (X0 + w) + ',' + by + ' ' + (X0 + w) + ',' + (by + r) +
+                ' V' + (by + BAR - r) + ' Q' + (X0 + w) + ',' + (by + BAR) + ' ' + (X0 + w - r) + ',' + (by + BAR) + ' H' + X0 + ' Z';
+        svg.appendChild(el('path', {d: d, 'class': series[i].cls}));
+      }
+      svg.appendChild(el('text', {x: X0 + w + 6, y: by + BAR - 3, 'class': 'c-value'}, v + '%'));
+      var hit = el('rect', {x: X0 - 4, y: by - 1, width: W + 40, height: BAR + 2, 'class': 'c-hit', tabindex: 0,
+        'aria-label': series[i].name + ', ' + row.rule + row.label + ': ' + v + '%'});
+      var hl = el('rect', {x: X0 - 4, y: by - 1, width: W + 40, height: BAR + 2, 'class': 'c-hl', rx: 3});
+      var html = '<b>' + series[i].name + '</b><br>' + (row.rule || '') + row.label + ': <b>' + v + '%</b>';
+      hit.addEventListener('mousemove', function(e){ showTip(e, html); });
+      hit.addEventListener('mouseleave', hideTip);
+      hit.addEventListener('blur', hideTip);
+      svg.appendChild(hit); svg.appendChild(hl);
+    });
+    y += 2 * BAR + GAP + 18;
   });
 })();
 </script>
