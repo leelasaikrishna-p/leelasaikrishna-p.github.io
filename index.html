@@ -219,6 +219,21 @@ footer .meta{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(-
   footer .meta{text-align:left;}
 }
 @media (prefers-reduced-motion: reduce){ *{transition:none !important;} }
+@media print{
+  @page{size:Letter; margin:0.5in;}
+  :root{-webkit-print-color-adjust:exact; print-color-adjust:exact;}
+  body{padding-inline:0;}
+  nav.topbar{position:static; backdrop-filter:none; -webkit-backdrop-filter:none; background:var(--paper);}
+  nav.topbar .links, button.copy-btn, .tooltip, details.data-table{display:none !important;}
+  header.hero{padding-top:20px;}
+  .wrap, nav.topbar .inner{max-width:100%;}
+  figure, .stages, .stat-tile, .stats-grid, .callout, .study-head{break-inside:avoid;}
+  h2, h3, .study-head{break-after:avoid;}
+  .stat-tile .seal{top:-6px; right:-6px;}
+  .viz-scroll{overflow:visible;}
+  .viz-scroll svg{min-width:0;}
+  a{text-decoration:none;}
+}
 </style>
 </head>
 <body>
@@ -263,7 +278,8 @@ footer .meta{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(-
           <text class="d-small" x="30" y="54">Cisco · Telstra</text>
 
           <circle cx="155.7" cy="66" r="5" class="d-dot"/>
-          <line class="d-line" x1="155.7" y1="72" x2="155.7" y2="102"/>
+          <line class="d-line" x1="155.7" y1="72" x2="155.7" y2="76"/>
+          <line class="d-line" x1="155.7" y1="92" x2="155.7" y2="102"/>
           <text class="d-text" x="155.7" y="118" text-anchor="middle">2009 · Technology lead</text>
           <text class="d-small" x="155.7" y="132" text-anchor="middle">Apple engagement</text>
 
