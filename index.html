@@ -563,7 +563,7 @@ footer .meta{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(-
     <article class="study featured">
       <div class="study-head">
         <h3>Agentic AI evaluation orchestrator</h3>
-        <span class="badge featured-badge"><span class="dot"></span>83 tests · 60 labeled answers</span>
+        <span class="badge featured-badge"><span class="dot"></span>84 tests · 60 labeled answers</span>
       </div>
       <div class="stages">
         <div class="stage">
@@ -655,7 +655,7 @@ footer .meta{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(-
 
       <div class="callout"><b>Prompt injection:</b> marking the answer as data in the prompt fully protected Gemini but made Llama worse. The defense that held on both models is outside the model: code supplies the tools' inputs, and a rule-based check escalates first.</div>
 
-      <div class="callout"><b>Repeatability:</b> every check was re-run five times on the same answers, with temperature pinned to 0. The final verdict still changed on 12% of answers for Llama and 10% for Gemini, always on borderline cases, and a single run's catch rate ranged from 91% to 97%. Raising the temperature to 0.7 doubled the flips. Each number above is one sample; important gates need several runs.</div>
+      <div class="callout"><b>Repeatability:</b> every check was re-run five times on the same answers, with temperature pinned to 0. The final verdict still changed on 12% of answers for Llama and 10% for Gemini, always on borderline cases, and a single run's catch rate ranged from 91% to 97%. Raising the temperature to 0.7 doubled the flips. Escalating every answer whose runs disagreed caught at most one more bad answer while sending more good ones to a human, so the gate stays one run, and each number above is read as one sample.</div>
 
       <a class="repo-link" href="https://github.com/leelasaikrishna-p/ai-eval-orchestrator" target="_blank" rel="noopener">View the repo on GitHub →</a>
     </article>
