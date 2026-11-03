@@ -232,6 +232,10 @@ footer .meta{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(-
   .stat-tile .seal{top:-6px; right:-6px;}
   .viz-scroll{overflow:visible;}
   .viz-scroll svg{min-width:0;}
+  footer{padding:14px 0 0; margin-top:4px; break-inside:avoid;}
+  section.next{padding-bottom:0;}
+  .study.featured{margin-bottom:8px;}
+  .study.featured .callout{margin-top:12px;}
   a{text-decoration:none;}
 }
 </style>
@@ -563,7 +567,7 @@ footer .meta{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(-
     <article class="study featured">
       <div class="study-head">
         <h3>Agentic AI evaluation orchestrator</h3>
-        <span class="badge featured-badge"><span class="dot"></span>101 tests · 105 labeled answers</span>
+        <span class="badge featured-badge"><span class="dot"></span>124 tests · 105 labeled answers</span>
       </div>
       <div class="stages">
         <div class="stage">
@@ -654,6 +658,8 @@ footer .meta{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(-
       </figure>
 
       <div class="callout"><b>Prompt injection:</b> marking the answer as data in the prompt fully protected Gemini but made Llama worse, so the defenses that matter sit outside the model: code supplies the tools' inputs, and every answer is screened first. On 29 red-team attacks in 7 styles, the rule check alone caught 24% (only the crude ones). Adding an LLM classifier as a second signal raised that to 81% on Llama and 100% on Gemini, with no genuine false alarms on 124 normal answers. The classifier can only add escalations; it never approves.</div>
+
+      <div class="callout"><b>Tool inputs:</b> a call can succeed and still grade the wrong thing. Llama passed a wrong argument on 47% of its 150 tool calls, and in 9 of 60 answers cut the answer or reference off mid-sentence; Gemini got all 148 right. Code fills in the real inputs and records every correction, and each result is range-checked before it counts as evidence.</div>
 
       <div class="callout"><b>Review load:</b> at a realistic 5% bad-answer rate, about a quarter of live answers would go to a human, mostly because the groundedness check flagged good answers. A claim-by-claim version, scored on questions held out from its design, cut Gemini's false alarms from 14% to 2% with every bad answer still caught, shrinking the projected review queue from about 26% to 8% (closer to 16% on a fresh set built to be heavy on borderline inferences). On Llama the same change halved false alarms on the design questions and quadrupled them on the held-out ones, so it ships for Gemini only.</div>
 
